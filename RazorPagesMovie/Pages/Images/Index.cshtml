@@ -1,0 +1,49 @@
+﻿@page
+@model RazorPagesMovie.Pages.Images.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageGallery[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageGallery[0].Path)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageGallery[0].Path)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ImageGallery) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Path)
+            </td>
+            <td>
+                <img src="~/images/@item.Path" width="100" height="100" class="rounded-circle"      
+                         asp-append-version="true"/>
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
